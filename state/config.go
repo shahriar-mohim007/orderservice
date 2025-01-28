@@ -7,7 +7,7 @@ import (
 type Config struct {
 	ApplicationPort int    `env:"APPLICATION_PORT"`
 	DatabaseUrl     string `env:"DATABASE_URL"`
-	LogLevel        string `env:"LOG_LEVEL" `
+	LogLevel        string `env:"LOG_LEVEL" envDefault:"debug"`
 	SecretKey       string `env:"SECRET_KEY"`
 }
 

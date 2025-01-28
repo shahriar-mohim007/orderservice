@@ -65,3 +65,23 @@ func (repo *PgxRepository) Close() {
 		log.Info().Msg("Database connection pool closed")
 	}
 }
+
+func (repo *PgxRepository) GetUserByEmail(ctx context.Context, email string) (*User, error) {
+	var user User
+	query := `SELECT id, name, email, password FROM users WHERE email = $1`
+	err := repo.db.QueryRow(ctx, query, email).Scan(&user.ID, &user.Name, &user.Email, &user.Password)
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func (repo *PgxRepository) CreateUser(ctx context.Context, user *User) error {
+	query := `INSERT INTO users (id, name, email, password,created_at, updated_at) 
+	          VALUES ($1, $2, $3, $4, NOW(), NOW()) RETURNING id`
+	err := repo.db.QueryRow(ctx, query, user.ID, user.Name, user.Email, user.Password).Scan(&user.ID)
+	if err != nil {
+		return err
+	}
+	return nil
+}

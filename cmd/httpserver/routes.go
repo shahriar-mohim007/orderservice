@@ -25,11 +25,12 @@ func routes(s *state.State) *chi.Mux {
 	r.Use(cors.New(corsOptions).Handler)
 
 	r.Route("/api/v1", func(r chi.Router) {
-
+		r.Post("/register", HandleRegisterUser(s))
+		r.Post("/login", HandleLogin(s))
 	})
 
 	r.Route("/api/v1/orders", func(r chi.Router) {
-
+     
 	})
 
 	return r
