@@ -44,3 +44,30 @@ var Unauthorized = utilis.ResponseState{
 	Message:    "Unauthorized",
 	Type:       "error",
 }
+var OrderCreateSuccess = utilis.ResponseState{
+	StatusCode: http.StatusOK,
+	Message:    "Order Created Successfully",
+	Type:       "success",
+}
+
+var BadRequestError = utilis.ResponseState{
+	StatusCode: http.StatusBadRequest,
+	Message:    "Bad Request",
+}
+
+var OrderFetchedSuccess = utilis.ResponseState{
+	StatusCode: http.StatusOK,
+	Message:    "Orders successfully fetched.",
+	Type:       "success",
+}
+var OrderCancelSuccess = utilis.ResponseState{
+	StatusCode: http.StatusOK,
+	Message:    "Order Cancelled Successfully",
+	Type:       "success",
+}
+
+var OrderCancelError = utilis.ResponseState{
+	StatusCode: http.StatusBadRequest,
+	Message:    "Please contact cx to cancel order",
+	Type:       "error",
+}

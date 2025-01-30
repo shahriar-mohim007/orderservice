@@ -30,7 +30,10 @@ func routes(s *state.State) *chi.Mux {
 	})
 
 	r.Route("/api/v1/orders", func(r chi.Router) {
-     
+		r.Use(AuthMiddleware(s))
+		r.Post("/", HandleCreateOrder(s))
+		r.Get("/all", HandlerGetAllOrders(s))
+		r.Put("/{id}/cancel", HandleCancelOrder(s))
 	})
 
 	return r
