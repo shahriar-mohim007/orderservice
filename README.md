@@ -1,43 +1,40 @@
-# orderservice
-
-
-This is the Order Service API for managing user registrations, orders, and related functionalities. It is built using Go and Docker, providing an easy-to-use service for order management, authentication, and other related tasks.
+# Order Service API Documentation
 
 ## Table of Contents
-1. [Cloning the Repository](#cloning-the-repository)
-2. [Running the Project](#running-the-project)
-3. [API Documentation](#api-documentation)
-   - [User Registration](#user-registration)
-   - [User Login](#user-login)
-   - [Create Order](#create-order)
-   - [Get All Orders](#get-all-orders)
-   - [Cancel Order](#cancel-order)
-   - [Logout](#logout)
-   - [Refresh Token](#refresh-token)
-4. [Notes](#notes)
+- [Getting Started](#getting-started)
+- [Authentication](#authentication)
+- [API Endpoints](#api-endpoints)
+- [Error Handling](#error-handling)
 
----
-
-## Cloning the Repository
-
-To get started, clone the repository using the following command:
-
-```bash
-git clone https://github.com/shahriar-mohim007/orderservice.git
-Running the Project
-
-## Running the Project
-
-To run the project, follow these steps:
+## Getting Started
 
 ### Prerequisites
+- Docker and Docker Compose installed on your system
+- Git for cloning the repository
 
-Ensure that you have Docker and Docker Compose installed on your system.
+### Installation
 
-### Starting the Services
+1. Clone the repository:
+```bash
+git clone https://github.com/shahriar-mohim007/orderservice.git
 
+Start the application using Docker Compose:
+
+bash
 Navigate to the project directory and run the following command to start the services:
 
 ```bash
 docker-compose up
 
+The service will be available at http://localhost:8080.
+Authentication
+The API uses JWT (JSON Web Token) for authentication. You must first register and login to obtain an access token.
+User Registration
+curl --location 'http://localhost:8080/api/v1/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "John Doe",
+    "email": "01901901901@mailinator.com",
+    "password": "321dsaf"
+}'
+User Login
