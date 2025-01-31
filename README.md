@@ -26,4 +26,4 @@ To get started, clone the repository using the following command:
 git clone https://github.com/shahriar-mohim007/orderservice.git
 Running the Project
 
-To run the project, follow these steps:
+## Running the Project
