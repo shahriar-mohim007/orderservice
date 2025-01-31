@@ -117,6 +117,8 @@ curl --location 'http://localhost:8080/api/v1/token/refresh' \
     "refresh_token": "REFRESH_TOKEN"
 }'
 ```
+### Postman Collection
+https://api.postman.com/collections/33579946-2546317b-0ab3-42f4-80e3-db86b8b7f221?access_key=PMAT-01JJXTHAYZCDQ3C50Q1XEFYSBR
 
 
 
