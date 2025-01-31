@@ -27,3 +27,17 @@ git clone https://github.com/shahriar-mohim007/orderservice.git
 Running the Project
 
 ## Running the Project
+
+To run the project, follow these steps:
+
+### Prerequisites
+
+Ensure that you have Docker and Docker Compose installed on your system.
+
+### Starting the Services
+
+Navigate to the project directory and run the following command to start the services:
+
+```bash
+docker-compose up
+
