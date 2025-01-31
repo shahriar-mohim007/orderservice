@@ -8,10 +8,6 @@
 
 ## Getting Started
 
-### Prerequisites
-- Docker and Docker Compose installed on your system
-- Git for cloning the repository
-
 ### Installation
 
 1. Clone the repository:
