@@ -63,7 +63,7 @@ curl --location 'http://localhost:8080/api/v1/orders/' \
     "merchant_order_id": "ORD-12345",
     "recipient_name": "John Doe",
     "recipient_phone": "01712345678",
-    "recipient_address": "123, Main Street, Dhaka",
+    "recipient_address": "banani, gulshan 2, dhaka, bangladesh",
     "recipient_city": 1,
     "recipient_zone": 1,
     "recipient_area": 1,
