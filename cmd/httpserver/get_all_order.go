@@ -45,6 +45,7 @@ type Order struct {
 	RecipientPhone     string  `json:"recipient_phone"`
 	OrderAmount        float64 `json:"order_amount"`
 	TotalFee           float64 `json:"total_fee"`
+	SpecialInstruction string  `json:"instruction"`
 	OrderTypeID        int     `json:"order_type_id"`
 	CODFee             float64 `json:"cod_fee"`
 	PromoDiscount      float64 `json:"promo_discount"`
@@ -117,6 +118,7 @@ func HandlerGetAllOrders(app *state.State) http.HandlerFunc {
 				RecipientPhone:     o.RecipientPhone,
 				OrderAmount:        o.AmountToCollect,
 				TotalFee:           o.TotalFee,
+				SpecialInstruction: o.SpecialInstruction,
 				OrderTypeID:        o.OrderTypeID,
 				CODFee:             o.CODFee,
 				PromoDiscount:      o.PromoDiscount,
