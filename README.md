@@ -4,7 +4,7 @@
 - [Getting Started](#getting-started)
 - [Authentication](#authentication)
 - [API Endpoints](#api-endpoints)
-- [Error Handling](#error-handling)
+
 
 ## Getting Started
 
@@ -122,16 +122,5 @@ curl --location 'http://localhost:8080/api/v1/token/refresh' \
 }'
 ```
 
-## Error Handling
 
-The API returns appropriate HTTP status codes and error messages:
-
-- 200: Successful operation
-- 400: Bad request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Resource not found
-- 500: Internal server error
-
-For detailed error information, check the response body which will contain an error message and code.
 
