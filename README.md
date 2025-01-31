@@ -1,4 +1,4 @@
-# Order Service API Documentation
+# Order Service 
 
 ## Table of Contents
 - [Getting Started](#getting-started)
