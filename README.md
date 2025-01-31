@@ -60,7 +60,7 @@ Creates a new delivery order in the system.
 
 ```bash
 curl --location 'http://localhost:8080/api/v1/orders/' \
---header 'Authorization: Bearer YOUR_ACCESS_TOKEN' \
+--header 'Authorization: Bearer JWT_ACCESS_TOKEN' \
 --header 'Content-Type: application/json' \
 --data '{
     "store_id": 131172,
@@ -86,7 +86,7 @@ Retrieves a paginated list of orders with optional filters.
 
 ```bash
 curl --location 'http://localhost:8080/api/v1/orders/all?transfer_status=1&archive=0&limit=1&page=2' \
---header 'Authorization: Bearer YOUR_ACCESS_TOKEN'
+--header 'Authorization: Bearer JWT_ACCESS_TOKEN'
 ```
 
 Parameters:
@@ -100,7 +100,7 @@ Cancels an existing order by its ID.
 
 ```bash
 curl --location --request PUT 'http://localhost:8080/api/v1/orders/DA2501316CYUOG/cancel' \
---header 'Authorization: Bearer YOUR_ACCESS_TOKEN'
+--header 'Authorization: Bearer JWT_ACCESS_TOKEN'
 ```
 
 ### Logout
@@ -108,7 +108,7 @@ Invalidates the current access token.
 
 ```bash
 curl --location --request POST 'http://localhost:8080/api/v1/logout' \
---header 'Authorization: Bearer YOUR_ACCESS_TOKEN'
+--header 'Authorization: Bearer JWT_ACCESS_TOKEN'
 ```
 
 ### Refresh Token
@@ -118,7 +118,7 @@ Obtains a new access token using a refresh token.
 curl --location 'http://localhost:8080/api/v1/token/refresh' \
 --header 'Content-Type: application/json' \
 --data '{
-    "refresh_token": "YOUR_REFRESH_TOKEN"
+    "refresh_token": "REFRESH_TOKEN"
 }'
 ```
 
