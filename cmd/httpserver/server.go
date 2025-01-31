@@ -20,7 +20,7 @@ func Serve(app *state.State) error {
 		Handler:      routes(app),
 		ErrorLog:     log.New(app.Logger, "", 0),
 		IdleTimeout:  5 * time.Second,
-		ReadTimeout:  1 * time.Second,
+		ReadTimeout:  3 * time.Second,
 		WriteTimeout: 3 * time.Second,
 	}
 
