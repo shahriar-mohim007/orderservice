@@ -59,7 +59,7 @@ func HandleLogin(app *state.State) http.HandlerFunc {
 			return
 		}
 
-		ttl := 120 * time.Hour
+		ttl := 24 * time.Hour
 
 		accessToken, err := utils.GenerateJWT(user.ID,
 			utils.ScopeAuthentication, app.Config.SecretKey, ttl)

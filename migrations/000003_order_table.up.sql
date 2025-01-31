@@ -29,3 +29,7 @@ CREATE TABLE orders(
     updated_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE NO ACTION
 );
+
+CREATE INDEX idx_orders_pending
+    ON orders (order_status)
+    WHERE order_status = 'Pending' AND archive = FALSE;

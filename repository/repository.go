@@ -10,7 +10,7 @@ type Repository interface {
 	CreateUser(ctx context.Context, user *User) error
 	CreateOrder(ctx context.Context, order *Order) error
 	GetOrders(ctx context.Context, orderStatus string, archive bool, userID uuid.UUID, limit, page int) ([]Order, error)
-	GetOrderCount(ctx context.Context, userID uuid.UUID) (int, error)
+	GetOrderCount(ctx context.Context, userID uuid.UUID, orderStatus string, archive bool) (int, error)
 	CancelOrder(ctx context.Context, orderConsignmentID string) error
 	Close()
 }

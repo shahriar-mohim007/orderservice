@@ -128,7 +128,7 @@ func HandlerGetAllOrders(app *state.State) http.HandlerFunc {
 			})
 		}
 
-		totalCount, err2 := app.Repository.GetOrderCount(ctx, uuID)
+		totalCount, err2 := app.Repository.GetOrderCount(ctx, uuID, statusMap[transferStatus], archiveMap[archive])
 		if err2 != nil {
 			app.Logger.PrintError(err, map[string]string{
 				"Context": "GetAllOrdersCount",

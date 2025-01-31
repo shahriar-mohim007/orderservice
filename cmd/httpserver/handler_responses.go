@@ -71,3 +71,9 @@ var OrderCancelError = utilis.ResponseState{
 	Message:    "Please contact cx to cancel order",
 	Type:       "error",
 }
+
+var LogoutSuccess = utilis.ResponseState{
+	StatusCode: http.StatusOK,
+	Message:    "Successfully logged out",
+	Type:       "success",
+}

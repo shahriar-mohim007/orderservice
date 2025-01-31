@@ -8,15 +8,23 @@ import (
 	"orderservice/state"
 	utils "orderservice/utils"
 	"strings"
+	"time"
 )
 
 func AuthMiddleware(app *state.State) func(http.Handler) http.Handler {
-
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			tokenStr := extractTokenFromHeader(r)
+			tokenStr := ExtractTokenFromHeader(r)
 			if tokenStr == "" {
 				app.Logger.PrintError(fmt.Errorf("no token provided"), map[string]string{
+					"context": "authorization",
+				})
+				_ = Unauthorized.WriteToResponse(w, nil)
+				return
+			}
+
+			if isTokenBlacklisted(tokenStr) {
+				app.Logger.PrintError(fmt.Errorf("token is blacklisted"), map[string]string{
 					"context": "authorization",
 				})
 				_ = Unauthorized.WriteToResponse(w, nil)
@@ -35,13 +43,14 @@ func AuthMiddleware(app *state.State) func(http.Handler) http.Handler {
 				_ = Unauthorized.WriteToResponse(w, nil)
 				return
 			}
+
 			ctx := context.WithValue(r.Context(), "userid", claims.UserID.String())
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})
 	}
 }
 
-func extractTokenFromHeader(r *http.Request) string {
+func ExtractTokenFromHeader(r *http.Request) string {
 	authHeader := r.Header.Get("Authorization")
 	if authHeader == "" || !strings.HasPrefix(authHeader, "Bearer ") {
 		return ""
@@ -52,4 +61,20 @@ func extractTokenFromHeader(r *http.Request) string {
 func GetUserIDFromContext(ctx context.Context) (string, bool) {
 	userID, ok := ctx.Value("userid").(string)
 	return userID, ok
+}
+
+func isTokenBlacklisted(token string) bool {
+
+	value, exists := blacklistedTokens.Load(token)
+	if !exists {
+		return false
+	}
+
+	expiration, ok := value.(time.Time)
+	if !ok || time.Now().After(expiration) {
+		blacklistedTokens.Delete(token)
+		return false
+	}
+
+	return true
 }

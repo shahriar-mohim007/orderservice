@@ -159,14 +159,14 @@ func (repo *PgxRepository) GetOrders(ctx context.Context, orderStatus string, ar
 	return orders, nil
 }
 
-func (repo *PgxRepository) GetOrderCount(ctx context.Context, userID uuid.UUID) (int, error) {
+func (repo *PgxRepository) GetOrderCount(ctx context.Context, userID uuid.UUID, orderStatus string, archive bool) (int, error) {
 	query := `
 		SELECT COUNT(*) 
 		FROM orders 
-		WHERE user_id = $1`
+		WHERE user_id = $1 AND order_status = $2 AND archive = $3`
 
 	var count int
-	err := repo.db.QueryRow(ctx, query, userID).Scan(&count)
+	err := repo.db.QueryRow(ctx, query, userID, orderStatus, archive).Scan(&count)
 	if err != nil {
 		return 0, err
 	}

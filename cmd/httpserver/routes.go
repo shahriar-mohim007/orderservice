@@ -27,6 +27,8 @@ func routes(s *state.State) *chi.Mux {
 	r.Route("/api/v1", func(r chi.Router) {
 		r.Post("/register", HandleRegisterUser(s))
 		r.Post("/login", HandleLogin(s))
+		r.Post("/token/refresh", HandleRefreshToken(s))
+		r.With(AuthMiddleware(s)).Post("/logout", HandleLogout(s))
 	})
 
 	r.Route("/api/v1/orders", func(r chi.Router) {
